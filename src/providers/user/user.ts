@@ -32,6 +32,9 @@ export class UserProvider {
   public async login(passport: {email: string, password: string}) {
     try {
       let listUsers: ListUser = await this.storage.get(this.KEY_USER);
+      if(!listUsers) {
+        listUsers = {users: []};
+      }
       let userFind = listUsers.users.find((user) => user.password === passport.password && user.email === passport.email);
       if (userFind) {
         this.auth = { userLogged: userFind };
@@ -40,7 +43,7 @@ export class UserProvider {
         throw new Error('Usuário não encontrado.');
       }
     } catch (error) {
-      console.error(error);
+      throw error;
     }
   }
 
