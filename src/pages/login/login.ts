@@ -4,13 +4,7 @@ import { Component } from '@angular/core';
 import { UserProvider } from '../../providers/user/user';
 import { NgForm } from '@angular/forms';
 import { HomePage } from '../home/home';
-import { ToastController } from 'ionic-angular';
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { UtisProvider } from '../../providers/utis/utis';
 
 @IonicPage()
 @Component({
@@ -24,29 +18,21 @@ export class LoginPage {
   public dataPassport = { email: '', password: '' };
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private userProvider: UserProvider, private toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private userProvider: UserProvider,
+    private utisProvider: UtisProvider ) {
   }
 
   async login(form: NgForm) {
     if(form.form.invalid) {
-      this.showToast('Todos os campos são obrigatórios!');
+      this.utisProvider.showToast('Todos os campos são obrigatórios!');
       return;
     }
     try {
       await this.userProvider.login(form.value);
       this.navCtrl.setRoot(HomePage);
     } catch(error) {
-      this.showToast(error.message);
+      this.utisProvider.showToast(error.message);
     }
-  }
-
-  showToast(msg) {
-    this.toastCtrl.create({
-      message: msg,
-      showCloseButton: true,
-      position: 'top',
-      closeButtonText: 'Ok'
-    }).present();
   }
 
   ionViewDidLoad() {
