@@ -1,0 +1,7 @@
+{
+  "name": "find-my-spot",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
