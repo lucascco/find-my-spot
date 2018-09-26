@@ -47,10 +47,12 @@ export class MyApp {
         this.isLogged = true;
         if (!auth.userLogged) {
           this.isLogged = false;
+          this.openPage({component: LoginPage});
+        } else {
+          this.openPage({component: HomePage});
         }
       });
-
-      this.openPage({component: LoginPage});
+      this.userProvider.checkLogged();
     });
   }
 

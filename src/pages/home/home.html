@@ -1,18 +1,43 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="theme">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Estabelecimentos</ion-title>
+    <ion-buttons end>
+      <button (click)="toggleSearch()" ion-button icon-only color="theme-dark">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+<ion-content>
+  <ion-searchbar *ngIf="openedToggle" (ionInput)="searchPlaces($event)"></ion-searchbar>
+  <ion-card  class="card-place" *ngFor="let place of listPlaces?.places">
+    <img [src]="place.picture"/>
+    <ion-card-content>
+      <ion-card-title>
+        {{ place.name }}
+      </ion-card-title>
+      <p text-uppercase>
+        Disponibilidade de vagas: <b>{{ place.amountSpot }}%</b>.
+      </p>
+    </ion-card-content>
+    <ion-row class="footer">
+      <ion-col>
+        <button ion-button icon-start clear color="theme-black">
+          <ion-icon name="navigate"></ion-icon>
+          <div>Ir</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-start clear color="theme-black">
+          <ion-icon name="information-circle"></ion-icon>
+          <div>Sobre</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
 </ion-content>

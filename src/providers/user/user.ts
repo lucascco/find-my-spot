@@ -11,8 +11,17 @@ export class UserProvider {
   public auth: Auth;
 
   private KEY_USER = 'FIND_MY_SPOT_USER';
+  private KEY_USER_AUTH = 'FIND_MY_SPOT_USER_AUTH';
 
   constructor(private storage: Storage) {
+  }
+
+  public async checkLogged() {
+    this.auth = await this.storage.get(this.KEY_USER_AUTH);
+    if(!this.auth) {
+      this.auth = {userLogged: undefined};
+    }
+    this.actionsAuth.next(this.auth);
   }
 
   public async signup(user: User) {
@@ -24,6 +33,7 @@ export class UserProvider {
         listUsers.users.push(user);
       }
       await this.storage.set(this.KEY_USER, listUsers);
+      return this.setAuth({userLogged: user});
     } catch (error){
       console.error(error)
     }
@@ -39,6 +49,7 @@ export class UserProvider {
       if (userFind) {
         this.auth = { userLogged: userFind };
         this.actionsAuth.next(this.auth);
+        this.setAuth(this.auth);
       } else {
         throw new Error('Usuário não encontrado.');
       }
@@ -51,8 +62,17 @@ export class UserProvider {
     try {
       this.auth = { userLogged: undefined };
       this.actionsAuth.next(this.auth);
+      this.setAuth(null);
     } catch (error) {
       console.error(error);
+    }
+  }
+
+  public async setAuth(userAuth: Auth) {
+    if(userAuth) {
+      return await this.storage.set(this.KEY_USER_AUTH, userAuth);
+    } else {
+      return await this.storage.set(this.KEY_USER_AUTH, { userLogged: undefined });
     }
   }
 
