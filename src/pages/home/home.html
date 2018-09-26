@@ -26,7 +26,7 @@
     </ion-card-content>
     <ion-row class="footer">
       <ion-col>
-        <button ion-button icon-start clear color="theme-black">
+        <button (click)="goNavigation(place.lat, place.lng)" ion-button icon-start clear color="theme-black">
           <ion-icon name="navigate"></ion-icon>
           <div>Ir</div>
         </button>

@@ -6,6 +6,6 @@ export class Place {
   picture: string;
   name: string;
   amountSpot: number;
-  lat: string;
-  lng: string;
+  lat: number;
+  lng: number;
 }

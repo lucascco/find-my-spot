@@ -14,6 +14,7 @@ import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { UtisProvider } from '../providers/utis/utis';
 import { PaymentsPage } from '../pages/payments/payments';
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { PaymentsPage } from '../pages/payments/payments';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserProvider,
-    UtisProvider
+    UtisProvider,
+    LaunchNavigator
   ]
 })
 export class AppModule {}
