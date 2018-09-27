@@ -39,15 +39,33 @@ export class UserProvider {
     }
   }
 
+  public async changePassword(newPassword: string) {
+    try {
+      let dataUser = await this.findIndexUser(this.auth.userLogged);
+      dataUser.list.users[dataUser.idx].password = newPassword;
+      await this.storage.set(this.KEY_USER, dataUser.list);
+      this.auth.userLogged = dataUser.list.users[dataUser.idx];
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  public async deleteAccount() {
+    try {
+      let data = await this.findIndexUser(this.auth.userLogged);
+      data.list.users.splice(data.idx, 1);
+      await this.storage.set(this.KEY_USER, data.list);
+      this.logout();
+    } catch (error){
+      console.error(error)
+    }
+  }
+
   public async login(passport: {email: string, password: string}) {
     try {
-      let listUsers: ListUser = await this.storage.get(this.KEY_USER);
-      if(!listUsers) {
-        listUsers = {users: []};
-      }
-      let userFind = listUsers.users.find((user) => user.password === passport.password && user.email === passport.email);
-      if (userFind) {
-        this.auth = { userLogged: userFind };
+      let data = await this.findIndexUser(passport);
+      if (data.idx >= 0) {
+        this.auth = { userLogged: data.list.users[data.idx] };
         this.actionsAuth.next(this.auth);
         this.setAuth(this.auth);
       } else {
@@ -74,6 +92,20 @@ export class UserProvider {
     } else {
       return await this.storage.set(this.KEY_USER_AUTH, { userLogged: undefined });
     }
+  }
+
+  private async findIndexUser({email, password}): Promise<{list: ListUser, idx: number}> {
+    try {
+      let listUsers: ListUser = await this.storage.get(this.KEY_USER);
+      if(!listUsers) {
+        listUsers = {users: []};
+      }
+      let idx = listUsers.users.findIndex(user => user.password === password && user.email === email);
+      return { list: listUsers, idx };
+    } catch (error) {
+      return error;
+    }
+
   }
 
 }

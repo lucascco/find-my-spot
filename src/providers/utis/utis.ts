@@ -21,7 +21,8 @@ export class UtisProvider {
       message: msg,
       showCloseButton: true,
       position: 'top',
-      closeButtonText: 'Ok'
+      closeButtonText: 'Ok',
+      duration: 5000
     }).present();
   }
 

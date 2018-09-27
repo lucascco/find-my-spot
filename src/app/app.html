@@ -1,6 +1,6 @@
 <ion-menu [content]="content" *ngIf="isLogged">
   <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="theme">
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
@@ -9,6 +9,10 @@
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
+      </button>
+      <button (click)="logout()" ion-button icon-start clear>
+        <ion-icon name="exit"></ion-icon>
+        Sair
       </button>
     </ion-list>
   </ion-content>

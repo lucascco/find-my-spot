@@ -8,6 +8,7 @@ import { UserProvider } from '../providers/user/user';
 import { LoginPage } from '../pages/login/login';
 import { PaymentsPage } from '../pages/payments/payments';
 import { HelpPage } from '../pages/help/help';
+import { ProfilePage } from '../pages/profile/profile';
 
 @Component({
   templateUrl: 'app.html'
@@ -29,7 +30,7 @@ export class MyApp {
     this.pages = [
       { title: 'Estabelecimentos', component: HomePage },
       { title: 'Pagamentos', component: PaymentsPage },
-      { title: 'Perfil', component: PaymentsPage },
+      { title: 'Perfil', component: ProfilePage },
       { title: 'Ajuda', component: HelpPage },
     ];
 
@@ -49,7 +50,7 @@ export class MyApp {
           this.isLogged = false;
           this.openPage({component: LoginPage});
         } else {
-          this.openPage({component: HomePage});
+          this.openPage({component: ProfilePage});
         }
       });
       this.userProvider.checkLogged();
@@ -60,5 +61,9 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  logout() {
+    this.userProvider.logout();
   }
 }

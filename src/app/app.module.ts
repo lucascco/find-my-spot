@@ -15,6 +15,8 @@ import { SignupPage } from '../pages/signup/signup';
 import { UtisProvider } from '../providers/utis/utis';
 import { PaymentsPage } from '../pages/payments/payments';
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
+import { HelpPage } from '../pages/help/help';
+import { ProfilePage } from '../pages/profile/profile';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { LaunchNavigator } from '@ionic-native/launch-navigator';
     HomePage,
     LoginPage,
     SignupPage,
-    PaymentsPage
+    PaymentsPage,
+    HelpPage,
+    ProfilePage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,9 @@ import { LaunchNavigator } from '@ionic-native/launch-navigator';
     HomePage,
     LoginPage,
     SignupPage,
-    PaymentsPage
+    PaymentsPage,
+    HelpPage,
+    ProfilePage
   ],
   providers: [
     StatusBar,
