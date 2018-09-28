@@ -50,7 +50,7 @@ export class MyApp {
           this.isLogged = false;
           this.openPage({component: LoginPage});
         } else {
-          this.openPage({component: ProfilePage});
+          this.openPage({component: HomePage});
         }
       });
       this.userProvider.checkLogged();
