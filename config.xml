@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>find-my-spot</name>
-    <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+    <name>Find My Spot</name>
+    <description>Encontre fácil a sua vaga e não perca tempo rodando para procurar.</description>
+    <author email="lucasccorrea@gmail.com" href="http://ionicframework.com/">Lucas Corrêa</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -84,4 +84,5 @@
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" spec="^4.2.2" />
     <engine name="android" spec="7.0.0" />
+    <plugin name="cordova-plugin-screen-orientation" spec="^3.0.1" />
 </widget>

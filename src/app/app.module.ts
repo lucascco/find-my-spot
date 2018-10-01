@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { IonicStorageModule } from '@ionic/storage';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -49,7 +50,9 @@ import { ProfilePage } from '../pages/profile/profile';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserProvider,
     UtisProvider,
-    LaunchNavigator
+    LaunchNavigator,
+    ScreenOrientation
+
   ]
 })
 export class AppModule {}
