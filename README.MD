@@ -14,3 +14,18 @@ Engenhria de Produção
 
 Send an e-mail to more information:
 findmyspot@outlook.com
+
+# Development
+## Run the app:
+
+In folder projetc after clone
+
+Install dependecy npm
+```sh
+$ npm install
+```
+
+To run
+```sh
+$ npm run start
+```
