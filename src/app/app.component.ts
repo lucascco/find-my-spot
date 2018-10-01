@@ -18,8 +18,6 @@ export class MyApp {
 
   rootPage: any = HomePage;
 
-  isLogged: boolean;
-
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
@@ -44,13 +42,13 @@ export class MyApp {
 
       this.splashScreen.hide();
 
+      this.openPage({ component: LoginPage });
+
       this.userProvider.actionsAuth.subscribe(auth => {
-        this.isLogged = true;
         if (!auth.userLogged) {
-          this.isLogged = false;
-          this.openPage({component: LoginPage});
+          this.openPage({ component: LoginPage });
         } else {
-          this.openPage({component: HomePage});
+          this.openPage({ component: HomePage });
         }
       });
       this.userProvider.checkLogged();
@@ -60,7 +58,7 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    return this.nav.setRoot(page.component);
   }
 
   logout() {

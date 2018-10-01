@@ -37,7 +37,7 @@ export class HomePage {
     this.listPlaces = {
       places: [
         { name: 'Morumbi Shopping', amountSpot: 40, picture: 'assets/imgs/places/morumbi.png', lat: -23.6233905, lng: -46.6988589 },
-        { name: 'Shopping Pátio Paulista', amountSpot: 30, picture: 'assets/imgs/places/paulista.jpg', lat: -19.8674008, lng: -43.9653328 }
+        { name: 'Shopping Pátio Paulista', amountSpot: 30, picture: 'assets/imgs/places/paulista.jpg', lat: -23.557460, lng: -46.658680 }
       ]
     }
   }
